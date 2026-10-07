@@ -1,26 +1,27 @@
-# Javascript Basic Example
+# Demo
 
 ## Description
 
-This is a demonstration code example in Vanilla Javascript.
+A general purpose demo showcasing some of the most popular features of Handsontable in JavaScript.
 
-## Live preview
+## Installation
 
-You can preview this template on CodeSandbox  under the URL: https://githubbox.com/handsontable/handsontable/tree/master/next/docs/js/basic-example
+Install all necessary dependencies from npm with `npm install`.
 
-## How to run this project
+## Development
 
-### Installation
+To start local development server use `npm run start`. You can then visit http://localhost:8080 to view the project.
 
-Call `npm install` to install all necessary dependencies.
+## Testing
 
-### Development
+To run tests for this project, first launch the development server with `npm run start`. Once the server is running, execute `npm run test` to run the test specs.
 
-To start local development server call `npm run start`. Now you can visit http://localhost:8080 to view this project.
+## Forking
 
-### Testing
+There are two ways to fork this project in Handsontable's monorepo:
 
-In order to run tests for this project call `npm run start` which will launch the development server and after the server is running, call `npm run test` to run test specs.
+1. Fork the entire repository.
+2. Copy the example to a new repository. Detailed instructions are available [here](../../../../README.md#copying-an-example-to-a-separate-repo) in the section _Copying an example to a separate repo_.
 
 ## License
 
@@ -29,6 +30,8 @@ Handsontable is a commercial software with two licenses available:
 - Free for non-commercial purposes such as teaching, academic research, and evaluation. [Read it here](https://github.com/handsontable/handsontable/blob/master/handsontable-non-commercial-license.pdf).
 - Commercial license with support and maintenance included. See [pricing plans](https://handsontable.com/pricing).
 
-## Contact support
+## Get help
 
-We provide support for all users through [GitHub issues](https://github.com/handsontable/handsontable/issues). If you have a commercial license then you can add a new ticket through the [contact form](https://handsontable.com/contact?category=technical_support).
+Join our [community](https://github.com/handsontable/handsontable/discussions) to get help, share ideas, and contribute to the ongoing development of Handsontable!
+
+Commercial license holders with an active support plan can contact our [Support Team](https://handsontable.com/contact?category=technical_support).

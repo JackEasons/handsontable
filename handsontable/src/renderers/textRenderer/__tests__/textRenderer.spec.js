@@ -1,0 +1,144 @@
+describe('TextRenderer', () => {
+  const id = 'testContainer';
+
+  beforeEach(function() {
+    this.$container = $(`<div id="${id}"></div>`).appendTo('body');
+  });
+
+  afterEach(function() {
+    if (this.$container) {
+      destroy();
+      this.$container.remove();
+    }
+  });
+
+  it('should render string', async() => {
+    handsontable();
+    await setDataAtCell(2, 2, 'string');
+
+    expect(getCell(2, 2).innerHTML).toEqual('string');
+  });
+
+  it('should render number', async() => {
+    handsontable();
+    await setDataAtCell(2, 2, 13);
+
+    expect(getCell(2, 2).innerHTML).toEqual('13');
+  });
+
+  it('should render boolean true', async() => {
+    handsontable();
+    await setDataAtCell(2, 2, true);
+
+    expect(getCell(2, 2).innerHTML).toEqual('true');
+  });
+
+  it('should render boolean false', async() => {
+    handsontable();
+    await setDataAtCell(2, 2, false);
+
+    expect(getCell(2, 2).innerHTML).toEqual('false');
+  });
+
+  it('should render null', async() => {
+    handsontable();
+    await setDataAtCell(2, 2, null);
+
+    expect(getCell(2, 2).innerHTML).toEqual('');
+  });
+
+  it('should render undefined', async() => {
+    handsontable();
+    /* eslint-disable wrap-iife */
+    await setDataAtCell(2, 2, (function() {})());
+
+    expect(getCell(2, 2).innerHTML).toEqual('');
+  });
+
+  it('should render the cell without messing with "dir" attribute', async() => {
+    handsontable({
+      data: [['foo']],
+      renderer: 'text'
+    });
+
+    expect(getCell(0, 0).getAttribute('dir')).toBeNull();
+  });
+
+  it('should add class name `htDimmed` to a read only cell', async() => {
+    handsontable({
+      data: [['foo']],
+      renderer: 'text',
+      readOnly: true,
+      readOnlyCellClassName: 'htDimmed',
+      className: 'someClass',
+    });
+
+    expect(getCell(0, 0).className).toEqual('someClass htDimmed');
+  });
+
+  it('should render a multiline string', async() => {
+    handsontable();
+    await setDataAtCell(1, 2, 'a b');
+    await setDataAtCell(2, 2, 'a\nb');
+
+    expect($(getCell(2, 2)).height()).toBeGreaterThan($(getCell(1, 2)).height());
+  });
+
+  it('should wrap text when column width is limited', async() => {
+    handsontable({
+      colWidths: [100]
+    });
+    await setDataAtCell(0, 0, 'short text');
+    await setDataAtCell(1, 0, 'long long long long long long long text');
+
+    expect($(getCell(1, 0)).height()).toBeGreaterThan($(getCell(0, 0)).height());
+  });
+
+  it('should wrap text when trimWhitespace option is false', async() => {
+    handsontable({
+      trimWhitespace: false,
+      wordWrap: true,
+      data: [
+        ['text', 'long long long long long text']
+      ],
+      colWidths: [100, 500]
+    });
+
+    const oldRowHeight = $(getCell(0, 1)).height();
+
+    await updateSettings({
+      colWidths: [100, 100]
+    });
+
+    const newRowHeight = $(getCell(0, 1)).height();
+
+    expect(newRowHeight).toBeGreaterThan(oldRowHeight);
+  });
+
+  it('should internally call base renderer once', async() => {
+    const originalBaseRenderer = Handsontable.renderers.BaseRenderer;
+
+    const renderedCellCalls = [];
+
+    spyOn(Handsontable.renderers, 'BaseRenderer').and.callFake((...args) => {
+      const TD = args[1];
+
+      // The GhostTable that AutoColumnSize measures in renders its own cells, flagged with the
+      // `ghost-table` attribute, and those go through the same renderer contract. They are a
+      // separate render pass, not a second call on the rendered cell this spec is about.
+      if (!TD.hasAttribute('ghost-table')) {
+        renderedCellCalls.push(TD);
+      }
+    });
+
+    Handsontable.renderers.registerRenderer('base', Handsontable.renderers.BaseRenderer);
+    handsontable({
+      data: [['test']],
+      renderer: 'text',
+    });
+
+    expect(renderedCellCalls.length).toBe(1);
+
+    Handsontable.renderers.registerRenderer('base', originalBaseRenderer);
+  });
+});

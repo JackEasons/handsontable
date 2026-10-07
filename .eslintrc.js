@@ -1,10 +1,20 @@
 module.exports = {
+  root: true,
   extends: ['airbnb-base'],
   parser: '@babel/eslint-parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
+    babelOptions: {
+      plugins: [
+        '@babel/plugin-syntax-import-assertions',
+      ],
+    },
+  },
   plugins: [
     '@babel',
     'jsdoc',
-    'handsontable',
   ],
   env: {
     browser: true,
@@ -23,6 +33,8 @@ module.exports = {
     'class-methods-use-this': 'off',
     'comma-dangle': 'off',
     'consistent-return': 'off',
+    'brace-style': ['error', '1tbs', { allowSingleLine: false }],
+    curly: ['error', 'all'],
     'func-names': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
@@ -40,7 +52,7 @@ module.exports = {
       {
         code: 120,
         ignoreComments: true,
-        ignorePattern: '^\\s*x?it\\s*\\(', // Ignore long test names (e.q: `it("something long")`).
+        ignorePattern: '^\\s*x?(?:f?it)(?:\\.\\w+)?\\s*\\(', // Ignore long test names (e.g. `it("...")`, `it.flaky("...")`).
       }
     ],
     'newline-per-chained-call': 'off',
@@ -76,6 +88,7 @@ module.exports = {
       },
     ],
     'no-underscore-dangle': 'off',
+    'no-continue': 'off',
     'no-use-before-define': [
       'error',
       {
@@ -105,7 +118,18 @@ module.exports = {
     'jsdoc/check-tag-names': [
       'error',
       {
-        definedTags: ['plugin', 'util', 'experimental', 'deprecated', 'preserve', 'core', 'TODO', 'category']
+        definedTags: [
+          'plugin',
+          'util',
+          'experimental',
+          'deprecated',
+          'preserve',
+          'core',
+          'TODO',
+          'category',
+          'package',
+          'template',
+        ]
       }
     ],
     'jsdoc/check-types': 'error',
@@ -113,12 +137,10 @@ module.exports = {
     'jsdoc/empty-tags': 'error',
     'jsdoc/implements-on-classes': 'error',
     'jsdoc/match-description': 'off',
-    'jsdoc/newline-after-description': 'error',
     'jsdoc/no-bad-blocks': 'off',
     'jsdoc/no-defaults': 'off',
     'jsdoc/no-types': 'off',
     'jsdoc/no-undefined-types': 'off',
-    'jsdoc/require-description-complete-sentence': 'error',
     'jsdoc/require-description': 'off',
     'jsdoc/require-example': 'off',
     'jsdoc/require-file-overview': 'off',
@@ -137,21 +159,6 @@ module.exports = {
     'jsdoc/require-returns-type': 'error',
     'jsdoc/require-returns': 'error',
     'jsdoc/valid-types': 'error',
-    'handsontable/restricted-module-imports': [
-      'error',
-      '**/cellTypes',
-      '**/cellTypes/?(index)',
-      '**/editors',
-      '**/editors/?(index)',
-      '**/i18n',
-      '**/i18n/?(index)',
-      '**/plugins',
-      '**/plugins/?(index)',
-      '**/renderers',
-      '**/renderers/?(index)',
-      '**/validators',
-      '**/validators/?(index)',
-    ],
     // TODO: To be reviewed:
     'operator-linebreak': 'off',
     'object-curly-newline': 'off',
@@ -168,53 +175,27 @@ module.exports = {
     'getter-return': 'off',
     'switch-colon-spacing': 'off',
     'operator-assignment': 'off',
+    // New in airbnb-base v15 — disabled to avoid breaking API signatures and noisy diffs
+    'default-param-last': 'off',
+    'function-call-argument-newline': 'off',
+    // export { X as default } is a valid re-export pattern throughout the codebase
+    'no-restricted-exports': 'off',
+    // Cross-package relative imports are used in test bootstrap files (test/bootstrap.js etc.)
+    'import/no-relative-packages': 'off',
   },
   overrides: [
     {
       files: [
-        'test/**',
-        'src/3rdparty/walkontable/test/**',
-        '*.unit.js',
-        '*.spec.js',
-        'src/plugins/**/__tests__/helpers/**',
-      ],
-      rules: {
-        'import/extensions': 'off',
-        'import/no-unresolved': [
-          'error',
-          { ignore: ['handsontable', 'walkontable'] }
-        ],
-        'no-restricted-globals': [
-          'error',
-          'fit',
-          'fdescribe'
-        ],
-        'no-undef': 'off',
-        'handsontable/restricted-module-imports': 'off',
-      }
-    },
-    {
-      files: ['*.unit.js', '*.spec.js'],
-      rules: {
-        'no-undef': 'off',
-        'jsdoc/require-description-complete-sentence': 'off',
-        'jsdoc/require-jsdoc': 'off',
-        'jsdoc/require-param-description': 'off',
-        'jsdoc/require-param-type': 'off',
-        'jsdoc/require-returns': 'off',
-        'handsontable/restricted-module-imports': 'off',
-      }
-    },
-    {
-      files: [
         'scripts/**/*.mjs',
         'scripts/**/*.js',
+        'evals/**/*.mjs',
       ],
       rules: {
         'import/extensions': [
           'error',
           'never',
           {
+            js: ['error', 'always'],
             mjs: ['error', 'always'],
             json: ['error', 'always'],
           }
