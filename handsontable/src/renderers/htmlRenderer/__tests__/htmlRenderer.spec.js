@@ -1,0 +1,105 @@
+describe('HTMLRenderer', () => {
+  const id = 'testContainer';
+
+  beforeEach(function() {
+    this.$container = $(`<div id="${id}" style="width: 300px; height: 200px;"></div>`).appendTo('body');
+  });
+
+  afterEach(function() {
+    if (this.$container) {
+      destroy();
+      this.$container.remove();
+    }
+  });
+
+  it('should not fill empty rows with null values', async() => {
+    handsontable({
+      data: [['a', 'b', 'c', 'd', 'e', 'f']],
+      colHeaders: true,
+      rowHeaders: true,
+      minSpareRows: 5,
+      renderer: 'html'
+    });
+
+    expect($('.handsontable table tr:last-child td:eq(0)').html()).toEqual('');
+    expect($('.handsontable table tr:last-child td:eq(1)').html()).toEqual('');
+    expect($('.handsontable table tr:last-child td:eq(2)').html()).toEqual('');
+    expect($('.handsontable table tr:last-child td:eq(3)').html()).toEqual('');
+    expect($('.handsontable table tr:last-child td:eq(4)').html()).toEqual('');
+    expect($('.handsontable table tr:last-child td:eq(5)').html()).toEqual('');
+  });
+
+  it('should allow render the html without sanitizing the content', async() => {
+    handsontable({
+      // target="_blank" - can cause vulnerabilities in access to the window object (filtered by DOMPurify)
+      data: [
+        [
+          '<b>foo <span>zip</span></b>',
+          '<i>bar</i><img src onerror="">',
+          '<a href="#" target="_blank">baz</a>'
+        ]
+      ],
+      colHeaders: true,
+      rowHeaders: true,
+      renderer: 'html'
+    });
+
+    await waitForNextAnimationFrames(2);
+
+    expect(getMaster().find('table tr:last-child td:eq(0)').html())
+      .toBe('<b>foo <span>zip</span></b>');
+    expect(getMaster().find('table tr:last-child td:eq(1)').html())
+      .toBe('<i>bar</i><img src="" onerror="">');
+    expect(getMaster().find('table tr:last-child td:eq(2)').html())
+      .toBe('<a href="#" target="_blank">baz</a>');
+  });
+
+  it('should NOT warn about a missing sanitizer (the html cell type renders raw HTML on purpose)', async() => {
+    const warnSpy = spyOnConsoleWarn();
+
+    handsontable({
+      data: [['<b>foo</b>', '<i>bar</i><img src onerror="">']],
+      renderer: 'html'
+    });
+
+    await waitForNextAnimationFrames(2);
+
+    expect(warnSpy).not.toHaveBeenCalledWith(jasmine.stringMatching(/without a sanitizer/));
+  });
+
+  it('should render the cell without messing with "dir" attribute', async() => {
+    handsontable({
+      data: [['foo']],
+      renderer: 'html'
+    });
+
+    expect(getCell(0, 0).getAttribute('dir')).toBeNull();
+  });
+
+  it('should internally call base renderer once', async() => {
+    const originalBaseRenderer = Handsontable.renderers.BaseRenderer;
+
+    const renderedCellCalls = [];
+
+    spyOn(Handsontable.renderers, 'BaseRenderer').and.callFake((...args) => {
+      const TD = args[1];
+
+      // The GhostTable that AutoColumnSize measures in renders its own cells, flagged with the
+      // `ghost-table` attribute, and those go through the same renderer contract. They are a
+      // separate render pass, not a second call on the rendered cell this spec is about.
+      if (!TD.hasAttribute('ghost-table')) {
+        renderedCellCalls.push(TD);
+      }
+    });
+
+    Handsontable.renderers.registerRenderer('base', Handsontable.renderers.BaseRenderer);
+    handsontable({
+      data: [['test']],
+      renderer: 'html',
+    });
+
+    expect(renderedCellCalls.length).toBe(1);
+
+    Handsontable.renderers.registerRenderer('base', originalBaseRenderer);
+  });
+});

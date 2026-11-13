@@ -1,131 +1,300 @@
-# [![Build Status](https://raw.githubusercontent.com/handsontable/static-files/master/Images/Logo/Handsontable/Handsontable-logo-300-74.png)](https://handsontable.com)
+<div align="center">
+  <br><br>
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/handsontable/handsontable/develop/resources/handsontable-logo-black.svg"/>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/handsontable/handsontable/develop/resources/handsontable-logo-white.svg"/>
+    <img width="360" alt="Logo of Handsontable DataGrid" src="https://raw.githubusercontent.com/handsontable/handsontable/develop/resources/handsontable-logo-black.svg"/>
+  </picture>
+  <br><br>
+  <h3>Handsontable DataGrid is a <a href="https://handsontable.com/docs" target="_blank">JavaScript component</a> with a spreadsheet-like look and feel.</h3>
+  <p>
+    Use it with JavaScript, TypeScript, or frameworks such as 
+    <a href="https://github.com/handsontable/handsontable/tree/master/wrappers/react-wrapper" target="_blank">React</a>, 
+    <a href="https://github.com/handsontable/handsontable/tree/master/wrappers/angular-wrapper" target="_blank">Angular</a>, and 
+    <a href="https://github.com/handsontable/handsontable/tree/master/wrappers/vue3" target="_blank">Vue</a>. With its spreadsheet-like editing features, it’s perfect for building data-rich internal apps. It allows users to enter, edit, validate, and process data from various sources. Common use cases include resource planning software (ERP), inventory management systems, digital platforms, and data modeling applications.
+  </p>
 
-[**Handsontable**](https://handsontable.com) is a pure JavaScript/HTML5 spreadsheet component with an Excel-like appearance. It can easily integrate with any data source and comes with a variety of useful features like data binding, validation, sorting or powerful custom context menu. Actively supported by the [Handsoncode team](https://handsontable.com/team.html) team and [many contributors](https://github.com/handsontable/handsontable/graphs/contributors).
+<a href="https://handsontable.com">Website</a> &nbsp;&nbsp;—&nbsp;&nbsp; <a href="https://handsontable.com/docs">Documentation</a> &nbsp;&nbsp;—&nbsp;&nbsp; <a href="https://handsontable.com/docs/themes">Themes</a> &nbsp;&nbsp;—&nbsp;&nbsp; <a href="https://handsontable.com/docs/api">API</a> &nbsp;&nbsp;—&nbsp;&nbsp; <a href="https://forum.handsontable.com/">Community</a>
 
-[![Build status](https://travis-ci.org/handsontable/handsontable.png?branch=master)](https://travis-ci.org/handsontable/handsontable)
-[![npm](https://img.shields.io/github/contributors/handsontable/handsontable.svg)](https://github.com/handsontable/handsontable/graphs/contributors)
-[![npm](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/handsontable/handsontable/blob/master/LICENSE)
+  <br>
 
-## What to use it for?
-We have seen Handsontable being used in many different, sometimes completely unexpected fields. The list below is just to give you a rough idea on what you can do with Handsontable, but it doesn't limit you in any way.
+[![NPM version](https://img.shields.io/npm/v/handsontable?style=for-the-badge)](https://npmjs.com/package/handsontable)
+[![Total downloads](https://img.shields.io/npm/dt/handsontable.svg?style=for-the-badge)](https://npmjs.com/package/handsontable)
+[![Monthly downloads](https://img.shields.io/npm/dm/handsontable.svg?style=for-the-badge)](https://npmjs.com/package/handsontable)
+[![Contributors](https://img.shields.io/github/contributors/handsontable/handsontable?style=for-the-badge)](https://github.com/handsontable/handsontable/graphs/contributors)
+<br>
+[![CI status](https://github.com/handsontable/handsontable/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/handsontable/handsontable/actions/workflows/test.yml?query=branch%3Amaster)
+[![Quality gate status](https://sonarcloud.io/api/project_badges/measure?project=handsontable_handsontable&metric=alert_status)](https://sonarcloud.io/dashboard?id=handsontable_handsontable)
+[![FOSSA status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhandsontable%2Fhandsontable.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhandsontable%2Fhandsontable?ref=badge_shield)
 
-- Database editing
-- Configuration controlling
-- Data merging
-- Team scheduling
-- Sales reporting
-- Financial analysis
+  <br>
 
-## Installation
-There are many ways to install Handsontable but we suggest using npm or Bower.
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/handsontable/handsontable/develop/resources/handsontable-preview-dark-theme.png"/>
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/handsontable/handsontable/develop/resources/handsontable-preview-light-theme.png"/>
+    <img width="780" alt="JavaScript data grid preview" src="https://raw.githubusercontent.com/handsontable/handsontable/develop/resources/handsontable-preview-light-theme.png"/>
+  </picture>
+</div>
 
-```
-npm install handsontable --save
-```
-or 
-```
-bower install handsontable --save
-```
+## ✨ Key Features
 
-### Alternative installation
-- [Download ZIP](https://github.com/handsontable/handsontable/archive/master.zip)
-- [Download from nuget](https://www.nuget.org/packages/Handsontable/)
+&nbsp;&nbsp;✅&nbsp; [Built-in themes](https://handsontable.com/docs/themes/) <br>
+&nbsp;&nbsp;✅&nbsp; [Flexible API](https://handsontable.com/docs/api/) <br>
+&nbsp;&nbsp;✅&nbsp; [Virtualization](https://handsontable.com/docs/row-virtualization/) <br>
+&nbsp;&nbsp;✅&nbsp; [IME support](https://handsontable.com/docs/ime-support/) <br>
+&nbsp;&nbsp;✅&nbsp; [Internationalization](https://handsontable.com/docs/language/) <br>
+&nbsp;&nbsp;✅&nbsp; [RTL support](https://handsontable.com/docs/layout-direction/) <br>
+&nbsp;&nbsp;✅&nbsp; [Accessibility](https://handsontable.com/docs/accessibility/) ([targets WCAG 2.2 AA](https://handsontable.com/docs/javascript-data-grid/accessibility-conformance-report/)) <br>
+&nbsp;&nbsp;✅&nbsp; [Keyboard shortcuts](https://handsontable.com/docs/keyboard-shortcuts/) <br>
+&nbsp;&nbsp;✅&nbsp; [Sorting data](https://handsontable.com/docs/rows-sorting/) <br>
+&nbsp;&nbsp;✅&nbsp; [Filtering data](https://handsontable.com/docs/column-filter/) <br>
+&nbsp;&nbsp;✅&nbsp; [400 built-in formulas](https://handsontable.com/docs/formula-calculation/) <br>
+&nbsp;&nbsp;✅&nbsp; [Configurable selection](https://handsontable.com/docs/selection/) <br>
+&nbsp;&nbsp;✅&nbsp; [Data validation](https://handsontable.com/docs/cell-validator/) <br>
+&nbsp;&nbsp;✅&nbsp; [Conditional formatting](https://handsontable.com/docs/conditional-formatting/) <br>
+&nbsp;&nbsp;✅&nbsp; [Merged cells](https://handsontable.com/docs/merge-cells/) <br>
+&nbsp;&nbsp;✅&nbsp; [Frozen rows and columns](https://handsontable.com/docs/column-freezing/) <br>
+&nbsp;&nbsp;✅&nbsp; [Hiding rows and columns](https://handsontable.com/docs/column-hiding/) <br>
+&nbsp;&nbsp;✅&nbsp; [Right-click context menu](https://handsontable.com/docs/context-menu/) <br>
+&nbsp;&nbsp;✅&nbsp; [Row pagination](https://handsontable.com/docs/javascript-data-grid/rows-pagination/) <br>
+&nbsp;&nbsp;✅&nbsp; [Server-side data](https://handsontable.com/docs/javascript-data-grid/server-side-data/) <br>
+&nbsp;&nbsp;✅&nbsp; [Notifications](https://handsontable.com/docs/javascript-data-grid/notification/) <br>
+&nbsp;&nbsp;✅&nbsp; [Export to Excel](https://handsontable.com/docs/javascript-data-grid/export-to-excel/) <br>
+&nbsp;&nbsp;✅&nbsp; [Date and time editing](https://handsontable.com/docs/javascript-data-grid/cell-type/) <br>
+&nbsp;&nbsp;✅&nbsp; [Shadow DOM / Web Components support](https://handsontable.com/docs/javascript-data-grid/shadow-dom/) <br>
 
-### AMD support
-If you use a modular script loader then you can require Handsontable just like any other module:
+<br>
 
-```javascript
-require(['handsontable'], function(Handsontable) {
-    var hot = new Handsontable(document.getElementById('example'), {
-      data: [[1, 2, 3, 4], [1, 2, 3, 4]]
-    });
-});
-```
+<div id="installation">
 
-### CommonJS module support
-If you use a CommonJS compatible environment you can use the `require` function to import Handsontable:
+## 🪄 Installation
+Below, you'll find the installation guide for the JavaScript component. If you're using a specific framework, refer to its dedicated wrapper for installation instructions:
 
-```javascript
-var handsontable = require('handsontable');
-```
-To bundle Handsontable with [Browserify](http://browserify.org) you must specify the module names of all required modules:
+- <a href="https://github.com/handsontable/handsontable/tree/master/wrappers/react-wrapper">React</a>
+- <a href="https://github.com/handsontable/handsontable/tree/master/wrappers/angular-wrapper">Angular</a>
+- <a href="https://github.com/handsontable/handsontable/tree/master/wrappers/vue3">Vue</a>
 
-`browserify main.js -o bundle.js -r moment -r pikaday -r zeroclipboard -r numbro`
+---
 
-## Basic usage
-Assuming you have already installed Handsontable, add an empty `<div>` element that will be turned into a spreadsheet:
+### Install with npm
 
-```html
-<div id="example"></div>
-```
-In the next step, pass a reference to that `<div>` element and fill it with sample data:
-```javascript
-var data = [
-  ["", "Ford", "Volvo", "Toyota", "Honda"],
-  ["2016", 10, 11, 12, 13],
-  ["2017", 20, 11, 14, 13],
-  ["2018", 30, 15, 12, 13]
-];
+You can also use [Yarn](https://yarnpkg.com/package/handsontable), [NuGet](https://www.nuget.org/packages/Handsontable) or load the package from [CDN](https://jsdelivr.com/package/npm/handsontable).
 
-var container = document.getElementById('example');
-var hot = new Handsontable(container, {
-  data: data,
-  rowHeaders: true,
-  colHeaders: true
-});
-```
+  ```bash
+  npm install handsontable
+  ```
 
-## Examples
-- [Explore our features](https://handsontable.com/examples.html)
-- [Basic demo](http://jsfiddle.net/handsoncode/s6t768pq)
-- [Handling a large dataset](http://jsfiddle.net/handsoncode/Lp4qn55v)
-- [Finance](http://jsfiddle.net/handsoncode/b2g2h7oh)
-- [Sport](http://jsfiddle.net/handsoncode/b5rvw5zk)
-- [Science](http://jsfiddle.net/handsoncode/g1hnaxtt)
+### Provide an HTML container
 
-## Resources
-- [API Reference](http://docs.handsontable.com/Core.html)
-- [List of features](http://docs.handsontable.com/tutorial-features.html)
-- [Compatibility](http://docs.handsontable.com/tutorial-compatibility.html)
-- [Performance tips](http://docs.handsontable.com/tutorial-performance-tips.html)
-- [Roadmap](https://trello.com/b/PztR4hpj/handsontable-roadmap-2016)
-- [Known limitations](http://docs.handsontable.com/tutorial-known-limitations.html)
+  ```html
+  <!-- Set the container's ID -->
+  <div id="handsontable-grid"></div>
+  ```
 
-## Commercial version
-[Handsontable Pro](https://handsontable.com/pricing.html) is our premium spreadsheet solution packed with business-ready features. It comes with [forum support](https://forum.handsontable.com), where you can find the answers to common questions as well as talk directly with our core team members.
+### Setup
 
-| Pro Feature                 | Description                                                                            	|
-|---------------------------	|----------------------------------------------------------------------------------------	|
-| Binding rows with headers 	| Bind rows with headers to lock the row number and always display one beside the other. 	|
-| Collapsing columns        	| Expand and collapse columns to better fit the content.                                 	|
-| Column summary            	| Carry out pre-defined calculations and display the results in Handsontable.                 	|
-| Dropdown menu             	| Add a menu to the heading to enable additional operations for the columns.             	|
-| Export to file            	| Export data to a flat file like CSV or a string.                                       	|
-| Filtering                 	| Display rows that meet your criteria and hide the rest.                                	|
-| Gantt Chart               	| Create a simple Gantt Chart using Handsontable.                                        	|
-| Header tooltips           	| Display the header label in a tooltip.                                                 	|
-| Hiding columns            	| Hide specific columns and show the rest.                                               	|
-| Hiding rows               	| Hide specific rows and show the rest.                                                  	|
-| Nested headers            	| Create a nested, hierarchical structure of headers to get your data into groups.       	|
-| Trimming rows             	| Exclude specific rows from the rendering process so they won't be displayed.           	|
+  ```js
+  import Handsontable from 'handsontable';
+  
+  const element = document.getElementById('handsontable-grid');
+  
+  new Handsontable(element, {
+    data: [
+      { company: 'Tagcat', country: 'United Kingdom', rating: 4.4 },
+      { company: 'Zoomzone', country: 'Japan', rating: 4.5 },
+      { company: 'Meeveo', country: 'United States', rating: 4.6 },
+    ],
+    columns: [
+      { data: 'company', title: 'Company', width: 100 },
+      { data: 'country', title: 'Country', width: 170, type: 'dropdown', source: ['United Kingdom', 'Japan', 'United States'] },
+      { data: 'rating', title: 'Rating', width: 100, type: 'numeric' },
+    ],
+    rowHeaders: true,
+    navigableHeaders: true,
+    tabNavigation: true,
+    multiColumnSorting: true,
+    headerClassName: 'htLeft',
+    // licenseKey: 'your-license-key', // get a key at https://handsontable.com/pricing/
+  });
 
-Have questions regarding the Pro version? [Contact us](https://handsontable.com/contact.html?category=general_question) or take a look at the [Frequently Asked Questions](https://handsontable.com/faq.html).
+  ```
 
-## Screenshot
-<p align="center">
-<img src="https://raw.githubusercontent.com/handsontable/static-files/master/Images/Screenshots/handsontable-showcase.png" align="center" alt="Handsontable Screenshot"/>
-</p>
+[![Static Badge](https://img.shields.io/badge/View%20live%20demo-1a42e8?style=for-the-badge)](https://demos.handsontable.com/?example=javascript)
 
-## Community
-- [Forum](https://forum.handsontable.com)
-- [Google group](https://groups.google.com/forum/#!forum/handsontable)
-- [GitHub](https://github.com/handsontable/handsontable/issues)
-- [Twitter](https://twitter.com/handsontable)
+### CDN-based setup
 
-## Contributing
-If you would like to help us in writing the code, please take a look into [CONTRIBUTING.md](https://github.com/handsontable/handsontable/blob/master/CONTRIBUTING.md)
+<details close>
+  <summary>&nbsp; Show/Hide code</summary>
+  <br>
+  If your environment does not support imports, you can use the code below to quickly set up and run a data grid with basic configuration options.
+  <br><br>
 
-## Copyright and license
-Handsontable is released under the [MIT license](https://github.com/handsontable/handsontable/blob/master/LICENSE).
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Handsontable DataGrid - JavaScript Example</title>
+    </head>
+    <body>
+      <div id="handsontable-grid"></div>
+      <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+      <script>
+        const element = document.getElementById("handsontable-grid");
+  
+        new Handsontable(element, {
+          data: [
+            { company: "Tagcat", country: "United Kingdom", rating: 4.4 },
+            { company: "Zoomzone", country: "Japan", rating: 4.5 },
+            { company: "Meeveo", country: "United States", rating: 4.6 },
+          ],
+          columns: [
+            { data: "company", title: "Company", width: 100 },
+            { data: "country", title: "Country", width: 170, type: "dropdown", source: ["United Kingdom", "Japan", "United States"] },
+            { data: "rating", title: "Rating", width: 100, type: "numeric" },
+          ],
+          rowHeaders: true,
+          navigableHeaders: true,
+          tabNavigation: true,
+          multiColumnSorting: true,
+          headerClassName: "htLeft",
+          // licenseKey: "your-license-key", // get a key at https://handsontable.com/pricing/
+        });
+      </script>
+    </body>
+  </html>
+  ```
 
-Copyrights belong to Handsoncode sp. z o.o.
+</details>
+
+</div>
+
+<br>
+
+## 🎨 Themes
+
+Handsontable themes control how your data grid looks: colors, spacing, typography, borders, and overall visual style.
+
+You get three built-in themes out of the box:
+- main – modern, clean, default choice
+- horizon – lighter, spacious feel
+- classic – traditional spreadsheet look
+
+Each theme supports:
+- ️Light mode
+- Dark mode
+
+<picture>
+  <img width="780" alt="JavaScript data grid preview" src="https://raw.githubusercontent.com/handsontable/handsontable/develop/resources/handsontable-themes.png"/>
+</picture>
+
+## 🏗️ Custom Themes
+
+You can style Handsontable to match your product’s visual identity by creating a custom theme. Use the Theme API to extend a built-in theme and apply your own styling while keeping support for light/dark modes and density settings.
+
+### To stay aligned with design, you can rely on the:
+
+- [Theme Builder](https://handsontable.com/theme-builder)
+- [Handsontable Design System](https://www.figma.com/community/file/1487445656371116081)
+
+## 🚀 Resources
+
+- [Website](https://handsontable.com)
+- [Demo](https://handsontable.com/demo)
+- [Documentation](https://handsontable.com/docs)
+- [npm](https://www.npmjs.com/package/handsontable)
+- [CDN](https://www.jsdelivr.com/package/npm/handsontable)
+- [Forum](https://forum.handsontable.com/)
+- [Blog](https://handsontable.com/blog)
+- [Contact support team](https://handsontable.com/contact?category=technical_support)
+- [Get a quote](https://handsontable.com/get-a-quote)
+
+<br>
+
+## 🤔 Is Handsontable DataGrid a data grid or a spreadsheet?
+
+Handsontable DataGrid is a data grid component written in JavaScript, not a spreadsheet. However, it brings in many features typically found in spreadsheet software. We designed it this way because spreadsheet-like patterns are often the most user-friendly when it comes to data entry and management.
+
+### Spreadsheet-like features in Handsontable:
+
+- Keyboard shortcuts compliant with either Google Sheets or Excel
+- 400 spreadsheet formulas via native integration with [HyperFormula](https://github.com/handsontable/hyperformula)
+- Keyboard navigation across headers that can be disabled, making only cells navigable
+- TAB navigation across cells that can be disabled
+- Built-in undo-redo functionality
+- Powerful clipboard capabilities for copy-paste operations
+- Ability to scroll the grid within the container (`div`) or window
+- Data binding in the form of an array of objects or arrays of arrays
+- Built-in cell editors like a date picker or dropdown list
+
+At first glance, it might seem that a data table, spreadsheet, and data grid are just different names for the same thing - an interactive table displaying data. In reality, these tools serve different purposes and offer distinct functionalities, designed to meet specific needs. Handsontable sits comfortably in the data grid category while incorporating many of the best aspects of spreadsheet software.
+
+<br>
+
+## 🤖 AI & agent resources
+
+Handsontable DataGrid and HyperFormula ship first-party resources for AI assistants and coding agents:
+
+- **Agent Skills** - official skills for Claude Code, Codex, and other coding agents, covering both products. Install in Claude Code with `/plugin marketplace add handsontable/handsontable-skills`.
+  → [github.com/handsontable/handsontable-skills](https://github.com/handsontable/handsontable-skills) · [Skills for Claude Code guide](https://handsontable.com/docs/javascript-data-grid/skills-for-claude-code/)
+- **AI Docs Assistant** - ask questions in English (or any other language) and get cited answers from the live docs, right in the [documentation header](https://handsontable.com/docs/javascript-data-grid/ai-docs-assistant/).
+- **[Docs MCP server](https://handsontable.com/docs/javascript-data-grid/docs-mcp-server/)** - semantic search over the full Handsontable + HyperFormula knowledge base: docs guides, API reference, code recipes, release notes, blog posts, and GitHub issues, always current with the latest release.
+  `claude mcp add --transport http handsontable-docs https://docs-assistant.handsontable.com/mcp`
+- **Docs written for agents** - every docs page has a Markdown twin; start at [handsontable.com/docs/llms.txt](https://handsontable.com/docs/llms.txt).
+- **Already using Context7?** Handsontable and HyperFormula are indexed there too.
+
+<br>
+
+## 🛟 Support
+
+**We're here to help!**
+
+If you're using Handsontable with a free, non-commercial license, you can:
+- Get quick help from our [**Ask AI** assistant](https://handsontable.com/docs/javascript-data-grid/ai-docs-assistant/) available in the documentation.
+- Report any bugs you find on our [**GitHub Issue Board**](https://github.com/handsontable/handsontable/issues).
+- Connect with other developers and find answers on our [**Developer Forum**](https://forum.handsontable.com/).
+
+If you have a commercial license, feel free to contact us directly at [**support@handsontable.com**](mailto:support@handsontable.com) or use our [**contact form**](https://handsontable.com/contact?category=technical_support).
+
+<br>
+
+## 📖 Licenses
+
+Handsontable DataGrid is available under the following licensing options. Each license comes with its own terms and conditions, as outlined below:
+
+### ① Free trial for evaluation
+Businesses and other organizations can evaluate Handsontable DataGrid for free. Start a trial at [handsontable.com/pricing](https://handsontable.com/pricing/) to get a trial license key. The trial covers internal evaluation outside production, runs once, and can't be renewed. During the trial, you can contact our technical support team. When it ends, you need a commercial license to keep using Handsontable DataGrid.
+
+### ② Commercial license
+For commercial use, a paid license is required. This license includes support and maintenance to ensure you get the most out of Handsontable. The commercial license can be purchased directly from Handsoncode or through an [authorized reseller](https://handsontable.com/resellers). See the [pricing page](https://handsontable.com/pricing) for details.
+
+### ③ Free license for non-commercial projects
+Non-commercial projects, such as teaching or academic research, may qualify for a free license. To apply, [contact our sales team](https://handsontable.com/contact/) and tell us about your project.
+
+<br>
+
+## 🔑 License Key
+
+Pass your license key in the `licenseKey` option. The examples above leave that line commented out: uncomment it and add your key.
+
+To evaluate Handsontable, [get a trial key](https://handsontable.com/pricing/). During the trial, the grid shows the Handsontable badge and a "Powered by Handsontable DataGrid" bar below the table, and the console warns how many days remain. After the trial expires, the grid shows an expiration message and the console reports an error. When the grace period stored in the key also passes, a blocking screen replaces the grid. See [Trial keys](https://handsontable.com/docs/license-key/#trial-keys) for details.
+
+For non-commercial use, [contact our sales team](https://handsontable.com/contact/) to apply for a free license.
+
+If you're using Handsontable in a project that supports commercial activities, you'll need to purchase a license key at [handsontable.com/pricing](https://handsontable.com/pricing). You can find more details in [our documentation](https://handsontable.com/docs/license-key/).
+
+<br>
+
+## 🙌 Contributing
+
+Contributions are welcome, but before you make them, please read the [Contributing Guide](https://github.com/handsontable/handsontable/blob/develop/CONTRIBUTING.md) and accept the [Contributor License Agreement](https://cla.handsontable.com/sign).
+
+<br>
+<br>
+
+Created and maintained by the [Handsontable Team](https://handsontable.com/team) 👋
+
+---
+
+© 2012 - 2026 Handsoncode

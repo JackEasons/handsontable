@@ -1,0 +1,23 @@
+import Handsontable from "handsontable";
+import "./styles.css";
+import { TEST_LICENSE_KEY } from "./test-license-key";
+
+const data = [
+    ['', 'Tesla', 'Volvo', 'Toyota', 'Ford'],
+    ['2019', 10, 11, 12, 13],
+    ['2020', 20, 11, 14, 13],
+    ['2021', 30, 15, 12, 13]
+];
+
+const container = document.getElementById('example');
+
+const hot = new Handsontable(container, {
+    data,
+    width: '100%',
+    height: 'auto',
+    rowHeaders: true,
+    colHeaders: true,
+    licenseKey: TEST_LICENSE_KEY
+});
+
+console.log(`Handsontable: v${Handsontable.version} (${Handsontable.buildDate})`);

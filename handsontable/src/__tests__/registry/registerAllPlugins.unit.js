@@ -1,0 +1,79 @@
+// eslint-disable-next-line no-unused-vars
+import Handsontable from 'handsontable/base';
+import { getRegisteredCellTypeNames } from '../../cellTypes/registry';
+import { getRegisteredEditorNames } from '../../editors/registry';
+import { getPluginsNames } from '../../plugins/registry';
+import { getRegisteredRendererNames } from '../../renderers/registry';
+import { getRegisteredValidatorNames } from '../../validators/registry';
+import { registerAllPlugins } from '../../registry';
+
+describe('`registerAllPlugins`', () => {
+  it('should register all built-in plugins', () => {
+    registerAllPlugins();
+
+    expect(getRegisteredCellTypeNames()).toEqual([
+      'text',
+    ]);
+    expect(getRegisteredEditorNames()).toEqual([
+      'text',
+    ]);
+    expect(getPluginsNames()).toEqual([
+      'AutoColumnSize',
+      'Autofill',
+      'SelectionHandles',
+      'MoveCells',
+      'ManualRowResize',
+      'AutoRowSize',
+      'AutoRowHeaderSize',
+      'ColumnSorting',
+      'Comments',
+      'ContextMenu',
+      'CopyPaste',
+      'DragToScroll',
+      'ManualColumnFreeze',
+      'ManualColumnMove',
+      'ManualColumnResize',
+      'ManualRowMove',
+      'MergeCells',
+      'StretchColumns',
+      'MultipleSelectionHandles',
+      'MultiColumnSorting',
+      'Search',
+      'TouchScroll',
+      'BindRowsWithHeaders',
+      'ColumnSummary',
+      'DropdownMenu',
+      'ExportFile',
+      'ImportFile',
+      'Filters',
+      'Formulas',
+      'FormulaBuilder',
+      'AutoLink',
+      'NestedHeaders',
+      'CollapsibleColumns',
+      'NestedRows',
+      'HiddenColumns',
+      'HiddenRows',
+      'TrimRows',
+      'CustomBorders',
+      'AsyncValues',
+      'Loading',
+      'Dialog',
+      'EmptyDataState',
+      'Notification',
+      'FreezeBar',
+      'RowSelection',
+      'CheckboxHeader',
+      'Pagination',
+      'SheetsBar',
+      'ViewState',
+      'DataProvider',
+      'UndoRedo',
+    ]);
+    expect(getRegisteredRendererNames()).toEqual([
+      'text',
+      'base',
+    ]);
+    expect(getRegisteredValidatorNames()).toEqual([]);
+  });
+});

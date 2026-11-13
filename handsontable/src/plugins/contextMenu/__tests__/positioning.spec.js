@@ -1,0 +1,156 @@
+describe('ContextMenu', () => {
+  beforeEach(function() {
+    this.$container = $('<div id="testContainer"></div>').appendTo('body');
+  });
+
+  afterEach(function() {
+    if (this.$container) {
+      destroy();
+      this.$container.remove();
+    }
+  });
+
+  using('configuration object', [
+    { htmlDir: 'ltr', layoutDirection: 'inherit' },
+    { htmlDir: 'rtl', layoutDirection: 'ltr' },
+  ], ({ htmlDir, layoutDirection }) => {
+    beforeEach(() => {
+      $('html').attr('dir', htmlDir);
+    });
+
+    afterEach(() => {
+      $('html').attr('dir', 'ltr');
+    });
+
+    // Where a submenu opens is asserted from DOM rects in tests/e2e/submenu-position.spec.ts: from every
+    // corner on the two layouts whose grid and page directions differ (the mixed rows of this using()
+    // table), and with the window scrolled on all four. A scroll of the grid's own holder never reaches
+    // the positioner. ./visual-tests/tests/js-only/context-menu/ keeps a look check of the menu.
+
+    describe('menu opening', () => {
+      it('should open context menu in proper position in iframe', async() => {
+        const themeLinkHtml = getE2eThemeStylesheetLinkTagHtml(getLoadedTheme());
+        // Tall enough for the whole menu below the cell on every theme (horizon's is the tallest, about 475px):
+        // a menu that fits neither below nor above its point is pulled back inside the frame, and this spec
+        // is about where the menu opens, not about that.
+        const iframeOutside = $('<iframe/>').css({ width: '500px', height: '700px' }).appendTo(spec().$container);
+        const docOutside = iframeOutside[0].contentDocument;
+
+        docOutside.open('text/html', 'replace');
+        docOutside.write(`
+          <!doctype html>
+          <head>
+            ${themeLinkHtml}
+          </head>`);
+        docOutside.close();
+
+        const iframeInside = $('<iframe/>')
+          .css({ margin: '250px 500px 500px 250px', width: '500px', height: '500px' }).appendTo(docOutside.body);
+        const docInside = iframeInside[0].contentDocument;
+
+        docInside.open('text/html', 'replace');
+        docInside.write(`
+          <!doctype html>
+          <head>
+            ${themeLinkHtml}
+          </head>`);
+        docInside.close();
+
+        const uiContainer = $('<div/>').addClass('uiContainer').appendTo(docOutside.body);
+        const container = $('<div/>').css({ marginTop: '500px', marginLeft: '500px' }).appendTo(docInside.body);
+
+        const hot = container.handsontable({
+          layoutDirection,
+          contextMenu: {
+            uiContainer: uiContainer[0],
+          },
+        }).handsontable('getInstance');
+
+        docOutside.documentElement.scrollTop = 500;
+        docOutside.documentElement.scrollLeft = 500;
+        docInside.documentElement.scrollTop = 500;
+        docInside.documentElement.scrollLeft = 500;
+
+        await waitForNextAnimationFrames(2);
+
+        const cell = hot.getCell(2, 2);
+
+        // Use direct simulation instead of the `contextMenu()` helper: that helper wraps in
+        // `waitOnScroll`, which patches the iframe HoT's scroll functions and later calls
+        // `hot().view.render()`. In this nested-iframe setup the render dispatches synthetic
+        // keyboard events cross-realm that confuse the recorder's listener cleanup logic.
+        $(cell).simulate('mousedown', { button: 2 });
+
+        // Wait for the cell to STOP MOVING, then read its position — the way a real `contextmenu`
+        // event carries the pointer's current coordinates. The mousedown selects the cell, and the
+        // selection's window-scroll strategy calls `scrollIntoView` on it, which scrolls the frames
+        // the cell sits outside of: this grid is driven from the parent realm, and the engine reads
+        // its window's scroll offset correctly now, so that strategy runs here as it does for a grid
+        // built in its own realm. Coordinates taken before the mousedown point at where the cell
+        // was, and the menu then opens there, 104px from where the cell is.
+        //
+        // Two equal samples in a row is the settled state itself, not a guess at how long settling
+        // takes, so it holds whether the scroll lands synchronously or a frame later.
+        let lastCellTop = null;
+
+        await waitUntil(() => {
+          const { top } = cell.getBoundingClientRect();
+          const settled = lastCellTop === top;
+
+          lastCellTop = top;
+
+          return settled;
+        });
+
+        const cellOffset = $(cell).offset();
+
+        $(cell).simulate('contextmenu', {
+          clientX: cellOffset.left - Handsontable.dom.getWindowScrollLeft(hot.rootWindow),
+          clientY: cellOffset.top - Handsontable.dom.getWindowScrollTop(hot.rootWindow),
+        });
+        await waitForNextAnimationFrames(2);
+
+        const contextMenuElem = $(docOutside.body).find('.htContextMenu');
+        const contextMenuOffset = contextMenuElem.offset();
+        const { top: cellTop, left: cellLeft } = cell.getBoundingClientRect();
+        const { top: iframeTop, left: iframeLeft } = iframeInside.offset();
+        const cellOffsetTop = cellTop + iframeTop;
+        const cellOffsetLeft = cellLeft + iframeLeft;
+
+        expect(contextMenuOffset.top).toBeAroundValue(cellOffsetTop);
+        expect(contextMenuOffset.left).toBeAroundValue(cellOffsetLeft);
+
+        container.handsontable('destroy');
+      });
+    });
+
+    it('should show tick from "Read only" element at proper place', async() => {
+      handsontable({
+        layoutDirection,
+        data: createSpreadsheetData(10, 10),
+        contextMenu: true,
+        readOnly: true,
+      });
+
+      await selectCell(0, 0);
+
+      const cell = getCell(0, 0);
+
+      await contextMenu(cell);
+
+      const $readOnlyItem = $('.htContextMenu .ht_master .htCore td:contains(Read only)');
+      const $tickItem = $readOnlyItem.find('span.selected');
+      const tickItemOffset = $tickItem.offset();
+      const $contextMenuRoot = $('.htContextMenu');
+      const contextMenuOffset = $contextMenuRoot.offset();
+
+      const readOnlyItemOffset = $readOnlyItem.offset();
+
+      expect(tickItemOffset.top).toBe(readOnlyItemOffset.top);
+      // The tick sits just inside the context-menu's left border. Theme tokens
+      // shift the baseline by 0px or 1px depending on density/border width, so
+      // allow a 1px tolerance instead of per-theme hardcoded values.
+      expect(tickItemOffset.left).toBeAroundValue(contextMenuOffset.left, 1);
+    });
+  });
+});

@@ -1,0 +1,50 @@
+module.exports = {
+  sidebar: [
+    {
+      title: 'Core API',
+      children: ['introduction', 'core', 'hooks', 'options'],
+    },
+    {
+      title: 'Columns',
+      children: [
+        'autoColumnSize', 'collapsibleColumns', 'columnSorting', 'columnSummary', 'freezeBar',
+        'hiddenColumns', 'manualColumnFreeze', 'manualColumnMove',
+        'manualColumnResize', 'multiColumnSorting', 'nestedHeaders', 'stretchColumns',
+      ],
+    },
+    {
+      title: 'Rows',
+      children: [
+        'autoRowHeaderSize', 'autoRowSize', 'bindRowsWithHeaders', 'hiddenRows',
+        'manualRowMove', 'manualRowResize', 'nestedRows', 'trimRows',
+      ],
+    },
+    {
+      title: 'Cells',
+      children: ['autoLink', 'autofill', 'comments', 'customBorders', 'formulas', 'mergeCells'],
+    },
+    {
+      title: 'Menus & UI',
+      children: [
+        'contextMenu', 'dropdownMenu', 'dialog', 'dragToScroll',
+        'emptyDataState', 'loading',
+      ],
+    },
+    {
+      title: 'Data & tools',
+      children: ['copyPaste', 'exportFile', 'filters', 'pagination', 'search', 'sheetsBar', 'undoRedo'],
+    },
+    {
+      title: 'Classes & utilities',
+      children: [
+        'baseEditor', 'basePlugin', 'cellCoords', 'cellRange',
+        'changesObserver', 'dataMap', 'eventManager', 'ghostTable', 'samplesGenerator',
+        'shortcutManager', 'shortcutContext', 'focusScopeManager',
+        'createShortcutManager', 'createFocusScopeManager',
+        'indexMapper', 'indexMap', 'indexesSequence',
+        'hidingMap', 'trimmingMap',
+        'physicalIndexToValueMap', 'linkedPhysicalIndexToValueMap',
+      ],
+    },
+  ],
+};
